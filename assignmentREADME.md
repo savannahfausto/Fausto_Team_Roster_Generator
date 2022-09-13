@@ -121,6 +121,8 @@ In addition to `Employee`'s properties and methods, `Intern` will also have the 
 
 Finally, although it’s not a requirement, consider adding validation to ensure that user input is in the proper format.
 
+in index.js validate function: have it hceck if length is greater than 0, valid email etc.....
+
 ## Grading Requirements
 
 > **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:

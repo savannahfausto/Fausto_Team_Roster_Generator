@@ -1,13 +1,36 @@
-const Employee = require('./Employee');
+const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+//how you turn data into html
 const generateHTML = require('./src/generateHTML');
 
-const inquirer = require('inquire');
+const inquirer = require('inquirer');
 const fs = require('fs');
 
 const employees = [];
+
+const menu = function() {
+    inquirer
+        .prompt(
+            {
+                type: 'list',
+                name: 'menu',
+                message: "Would you like to add another employee?",
+                choices: ["Engineer", "Intern", "I'm done making my roster"]
+            },
+        )
+        .then (answers => {
+            if (answers.menu === "Engineer") {
+                engineerPrompt();
+            } else if (answers.menu === "Intern") {
+                internPrompt();
+            } else {
+                console.log(employees);
+                createHTML();
+            }
+        })
+}
 
 const managerPrompt = function () {
 
@@ -18,7 +41,7 @@ const managerPrompt = function () {
     //intern name, id, email, school, then taken back to menu
     //option to exit once finish building team then html is generate
             .prompt(
-                {
+                [{
                     type: 'input',
                     name: 'managerName',
                     message: "What is the manager's name?",
@@ -35,15 +58,16 @@ const managerPrompt = function () {
                 },
                 {
                     type: 'input',
-                    name: 'managerName',
-                    message: "What is the manager's name?",
-                }, 
+                    name: 'managerOffice',
+                    message: "What is the manager's office number?",
+                }] 
             )
             .then(answers => {
                 //save employees to a global array because we want a list of all of the emps
                 //use answers to create a manager class
-                const manager = new Manager (answers.managerName)
+                const manager = new Manager (answers.managerName, answers.managerId, answers.managerEmail, answers.managerOffice)
                 employees.push(manager);
+                menu();
                 //call menu here but make it outside of (menu function can have engineer, intern or quit)
             })
 }
@@ -51,7 +75,7 @@ const managerPrompt = function () {
 const engineerPrompt = function() {
     inquirer   
         .prompt(
-            {
+            [{
                 type: 'input',
                 name: 'engineerName',
                 message: "What is the engineer's name?",
@@ -70,18 +94,19 @@ const engineerPrompt = function() {
                 type: 'input',
                 name: 'engineerGithub',
                 message: "What is the engineer's GitHub username?",
-            },
+            }]
         )
         .then(answers => {
-            const engineer = new Engineer (answers.engineerName)
+            const engineer = new Engineer (answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
             employees.push(engineer);
+            menu();
         })
 }
 
 const internPrompt = function() {
     inquirer   
         .prompt(
-            {
+            [{
                 type: 'input',
                 name: 'internName',
                 message: "What is the intern's name?",
@@ -100,13 +125,21 @@ const internPrompt = function() {
                 type: 'input',
                 name: 'internSchool',
                 message: "What is the intern's current school name?",
-            },
+            }]
         )
         .then(answers => {
-            const intern = new Intern (answers.internName)
+            const intern = new Intern (answers.internName, answers.internId, answers.internEmail, answers.internSchool)
             employees.push(intern);
+            menu();
         })
 }
-        
-        //put inside function to create the index.html from array of all employees
-        writeToFile('index.html', generateHTML(manager));
+
+const createHTML = function () {
+    //put inside function to create the index.html from array of all employees
+    fs.writeFile('index.html', generateHTML(employees), function(err){
+        if (err) throw err;
+        console.log(err);
+    });
+}
+
+managerPrompt();

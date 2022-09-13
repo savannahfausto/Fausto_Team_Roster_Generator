@@ -1,4 +1,3 @@
-const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -35,11 +34,6 @@ const menu = function() {
 const managerPrompt = function () {
 
     inquirer
-    //team managers name, employee ID, email address and office number
-    //menu to add an engineer or intern to finish building team
-    //engineer name, id, email, github username then taken back to menu
-    //intern name, id, email, school, then taken back to menu
-    //option to exit once finish building team then html is generate
             .prompt(
                 [{
                     type: 'input',

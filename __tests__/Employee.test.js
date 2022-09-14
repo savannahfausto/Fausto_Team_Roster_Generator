@@ -1,5 +1,4 @@
 const Employee = require("..lib/Employee");
-const { it } = require("node:test"); //is this needed, it keeps auto adding when do it.
 
 describe ('Employee', () =>{
     it('should return a new object of Employee', () => {

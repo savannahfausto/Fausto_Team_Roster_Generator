@@ -2,7 +2,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 //how you turn data into html
-const generateHTML = require('./src/generateHTML');
+const htmlTemplate = require('./src/generateHTML');
 
 const inquirer = require('inquirer');
 const fs = require('fs');
@@ -130,9 +130,8 @@ const internPrompt = function() {
 
 const createHTML = function () {
     //put inside function to create the index.html from array of all employees
-    fs.writeFile('index.html', generateHTML(employees), function(err){
+    fs.writeFile('./dist/index.html', htmlTemplate(employees), function(err){
         if (err) throw err;
-        console.log(err);
     });
 }
 

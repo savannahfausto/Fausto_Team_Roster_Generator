@@ -1,12 +1,10 @@
-const { it } = require('node:test');
-const { describe } = require('yargs');
 const Engineer = require('../lib/Engineer');
 
 describe('Engineer', () => {
     it('should create an object Engineer', () => {
         const engineer = new Engineer();
 
-        expect(typeof(engineer).toBe('object'));
+        expect(typeof (engineer).toBe('object'));
     });
 
     it('should set the engineer gitHub username', () => {

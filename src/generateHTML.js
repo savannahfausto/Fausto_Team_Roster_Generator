@@ -1,4 +1,5 @@
 const generateHTML = (employees) => {
+
     const generateManager = (manager) => {
         return  `
 <div class="card employee-card">
@@ -52,9 +53,24 @@ const generateHTML = (employees) => {
         `
     }
 
+    const htmlArray = employees.map(employee => {
+        switch(employee.getRole()) {
+            case 'Manager': 
+                return generateManager(employee)
+
+            case 'Engineer':
+                return generateEngineer(employee)
+            case 'Intern':
+                default:
+                return generateIntern(employee)
+            
+        }
+
+    })
+    return htmlArray
 }
 
-const htmlTemplate = (generateManager, generateEngineer, generateIntern) => {`<!DOCTYPE html>
+const htmlTemplate = (employees) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -77,12 +93,12 @@ const htmlTemplate = (generateManager, generateEngineer, generateIntern) => {`<!
   <div class="container">
       <div class="row">
           <div class="row team-area col-12 d-flex justify-content-center">
-              ${generateManager()}
+              ${generateHTML(employees).join('')}
           </div>
       </div>
   </div>
 </body>
 </html>`
-}
 
-module.exports = generateHTML;
+
+module.exports = htmlTemplate;

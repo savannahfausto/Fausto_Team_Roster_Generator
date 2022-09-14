@@ -1,17 +1,15 @@
-const { it } = require('node:test');
-const { describe } = require('yargs');
 const Intern = require('../lib/Intern');
 
 describe('Intern', () => {
     it('should create an object Intern', () => {
         const intern = new Intern();
 
-        expect(typeof(intern).toBe('object'));
+        expect(typeof intern).toBe('object');
     });
 
     it('should set the Intern schoolName', () => {
         const schoolName = 'UC Berkeley';
-        const intern = new Intern(schoolName);
+        const intern = new Intern('sav', 12, 'test@email', schoolName);
 
         expect(intern.schoolName).toBe(schoolName);
     });

@@ -11,22 +11,22 @@ describe('Intern', () => {
         const schoolName = 'UC Berkeley';
         const intern = new Intern('sav', 12, 'test@email', schoolName);
 
-        expect(intern.schoolName).toBe(schoolName);
+        expect(intern.school).toBe(schoolName);
     });
     
     describe('getSchool', () => {
         it('should return the Intern object schoolName', () => {
             const schoolName = 'UC Berkeley';
-            const intern = new Intern(schoolName);
+            const intern = new Intern('Wanda', 12, 'test@email.com', schoolName);
 
-            expect(intern.schoolName).toBe(schoolName);
+            expect(intern.school).toBe(schoolName);
         })
     })
 
     describe('getRole', () => {
         it('should return the string "Intern"', () => {
             const string = 'Intern';
-            const intern = new Intern(string);
+            const intern = new Intern('Wanda', 12, 'test@email.com', 'UC Berkeley');
 
             expect(intern.getRole()).toBe(string);
         })

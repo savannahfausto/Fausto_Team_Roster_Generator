@@ -1,14 +1,17 @@
+//require classes created
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-//how you turn data into html
+//require file of how you turn data into html
 const htmlTemplate = require('./src/generateHTML');
-
+//require dependencies
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+//create a global empty array that employees will be pushed into once created
 const employees = [];
 
+//menu gives option of creating new engineer, new intern or ending prompts completely
 const menu = function() {
     inquirer
         .prompt(
@@ -31,6 +34,7 @@ const menu = function() {
         })
 }
 
+//managerPrompt asks all of the Manager questions, creates a new Manager object and pushes that into the employee array
 const managerPrompt = function () {
 
     inquirer
@@ -61,11 +65,11 @@ const managerPrompt = function () {
                 //use answers to create a manager class
                 const manager = new Manager (answers.managerName, answers.managerId, answers.managerEmail, answers.managerOffice)
                 employees.push(manager);
+                //invokes menu to ask user if they want to add more employees or stop the prompts
                 menu();
-                //call menu here but make it outside of (menu function can have engineer, intern or quit)
             })
 }
-
+//engineerPrompt asks all of the Engineer questions, creates a new Engineer object and pushes that into the employee array
 const engineerPrompt = function() {
     inquirer   
         .prompt(
@@ -96,7 +100,7 @@ const engineerPrompt = function() {
             menu();
         })
 }
-
+//internPrompt asks all of the Intern questions, creates a new Intern object and pushes that into the employee array
 const internPrompt = function() {
     inquirer   
         .prompt(
@@ -128,11 +132,12 @@ const internPrompt = function() {
         })
 }
 
+//creates the index.html file and uses the htmlTemplate function, passing in the employees array, to create the file
 const createHTML = function () {
-    //put inside function to create the index.html from array of all employees
     fs.writeFile('./dist/index.html', htmlTemplate(employees), function(err){
         if (err) throw err;
     });
 }
 
+//invokes managerPrompt to start the application once prompted.
 managerPrompt();

@@ -1,8 +1,9 @@
+//generateHTML function encapsulates functions that generate cards for each employee
 const generateHTML = (employees) => {
-
+    //generateManager generates a card for the manager, using template literals to pass in responses from the inquirer prompts
     const generateManager = (manager) => {
         return  `
-<div class="card employee-card">
+<div class="card">
     <div class="card-header bg-primary text-white">
         <h2 class="card-title">${manager.getName()}</h2>
         <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
@@ -16,10 +17,10 @@ const generateHTML = (employees) => {
     </div>
 </div>`
     }
-
+    //generateEngineer generates a card for the engineers, using template literals to pass in responses from the inquirer prompts
     const generateEngineer = (engineer) => {
         return `
-<div class="card employee-card">
+<div class="card">
   <div class="card-header bg-primary text-white">
       <h2 class="card-title">${engineer.getName()}</h2>
       <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
@@ -34,10 +35,10 @@ const generateHTML = (employees) => {
 </div>
       `
     }
-
+    //generateIntern generates a card for the intern, using template literals to pass in responses from the inquirer prompts
     const generateIntern = (intern) => {
         return `
-<div class="card employee-card">
+<div class="card">
     <div class="card-header bg-primary text-white">
         <h2 class="card-title">${intern.getName()}</h2>
         <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
@@ -52,7 +53,7 @@ const generateHTML = (employees) => {
 </div>
         `
     }
-
+    //htmlArray maps over the passed in employees array and makes a card for each employee
     const htmlArray = employees.map(employee => {
         switch(employee.getRole()) {
             case 'Manager': 
@@ -67,9 +68,11 @@ const generateHTML = (employees) => {
         }
 
     })
+    //this entire function ultimately returns the htmlArray of generated cards
     return htmlArray
 }
 
+//htmlTemplate passes in the generateHTML function which returns the htmlArray of employees and joins each card block together with an empty string
 const htmlTemplate = (employees) => `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +82,6 @@ const htmlTemplate = (employees) => `<!DOCTYPE html>
   <title>My Team</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/c502137733.js"></script>
 </head>
 <body>

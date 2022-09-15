@@ -11,7 +11,7 @@ In using all of these concepts, this project aims to be an easy to use applicati
 This project taught me about how classes can be used for reusable and specific functionality. Furthermore, I was challenged by how everything connects to create a working application, but with importing and exporting functions and data it slowly started to make more sense.
 
 Below find an image of a Sample Team Roster: 
-![Image of a sample Team Roster](./images/Non-semantic_Elements.png)
+![Image of a sample Team Roster](./Assets/Sample_Team_Roster.png)
 
 
 ## Table of Contents 
@@ -62,4 +62,4 @@ My email is:
 
 Here is a link to the walkthrough video demonstrating the functionality of this team roster generator application. It will also show all tests passing for the class code.
 
-[Professional Team Roster Generator Walkthrough Video]()
+[Professional Team Roster Generator Walkthrough Video](https://drive.google.com/file/d/1q4DLD-T8vWyGXg9XZQyvSMbBBWLHBHpe/view)
